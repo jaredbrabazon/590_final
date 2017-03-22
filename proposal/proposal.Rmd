@@ -1,0 +1,31 @@
+---
+title: "Final Project Proposal"
+date: 22 March 2017
+output:
+  md_document:
+    variant: markdown_github
+---
+
+# Proposal: Due Wednesday March 22
+
+## * Who will participate in the final project? Groups may contain up to 3 people. For group projects, each group member must have their own repo, with an identical proposal.
+  * This project will be done by myself.
+
+## * Will the project will be a data analysis project or a package? It is acceptable to change the project type after the proposal is submitted, as long as you talk about it with me beforehand. 
+  * This project will initially be a data analysis project. However, depending on how the development of my project goes, I would like to try and make it into a package. I will be sure to update you if I do.
+
+## * Which git workflow from the Chacon Text wil you use?
+  * I will use a centralized workflow with one main repository "590_final." I will then synchronize and update all work done to that repository.
+  
+## * What will the project be about? This is a fairly open-ended question and the answers will depend on the specific project, but it should answer the following questions, in a few paragraphs of text:
+##    * What is the background for the need for the project? I.e., what problem does it solve, and why does that problem need to be solved?
+      * This project will be looking at the Benioff-Wadati zone for several subduction zones. A Benioff-Wadati zone is a zone of seismicity along the subducting slab. In a way, this gives inference to subduction angle as well as to the magnitude of events with depth. It is a way to visualize the subducting slab. Often, the Benioff zone is visualized by plotting earthquake events over a cross sectional area perpendicular to the subduction zone by their relative depths. This project is intended to analyze such data for several subduction zones. This is a good project for R as it will require the use of larger datasets.
+      
+##    * What is the source of the data? Will real-world data or made-up data be used? 
+    * Data will be mined from https://earthquake.usgs.gov/earthquakes/search/ where several hundred years of earthquake data is available globally.
+    
+##    * What specifications will the final project meet? I.e., what will you produce (a single plot of this vs that, a set of tools that does these three things, etc)
+    * The final project will produce a plot that defines the Benioff zone (earthquake depth by cross-sectional area). This plot will be generated for a few different subduction zones as to differentiate the subduction zones.
+    
+##    * For group projects, what are the roles of the group members?
+      * This will not be a group project.
