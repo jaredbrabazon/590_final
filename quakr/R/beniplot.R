@@ -13,10 +13,6 @@
 
 # Create the beni_plot() function
 beniplot <- function(data, units = "lon", magnitude = FALSE){
-  #import library
-  library(tidyverse)
-  library(ggplot2)
-  library(ggmap)
   
   #print plot of longitude and depth
   if(units == "lon" && magnitude == FALSE){

@@ -12,10 +12,6 @@
 
 #create adj_beniplot() function to plot strike adjusted data
 adj_beniplot <- function(data, strike = 0, magnitude = FALSE){
-  #import library
-  library(tidyverse)
-  library(ggplot2)
-  library(ggmap)
   
   #conversion from lat/long to km, from http://wiki.cbr.washington.edu/qerm/index.php/R/Converting_Geographic_Coordinates_to_Kilometers
   #note that it returns the projections about an origin

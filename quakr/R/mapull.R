@@ -12,9 +12,6 @@
 
 #create the mapull function
 mapull <- function(data, magnitude = FALSE){
-  #import library
-  library(ggplot2)
-  library(ggmap)
   
   #define the box of latitudes and longitudes
   k <- make_bbox(lon = longitude, lat = latitude, data = data)

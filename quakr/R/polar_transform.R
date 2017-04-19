@@ -13,9 +13,6 @@
 # create polar_transform() to rotate cartesian coordinates by converting to polar and rotating a given degree and finally converting back to cartesian
 # give option to view plots
 polar_transform <- function(data, rotation = 0, plots = TRUE){
-  #load library
-  library(tidyverse)
-  library(ggplot2)
   
   #perform a polar transformation from equations. Used equations from https://www.siggraph.org/education/materials/HyperGraph/modeling/mod_tran/2drota.htm
   #x' = x cos f - y sin f

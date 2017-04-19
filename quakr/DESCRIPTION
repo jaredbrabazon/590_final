@@ -6,10 +6,13 @@ Description: This package contains five functions that allow the visualization
 	of earthquake data. The main purpose is to easily define Wadati-Benioff Zones for subducting slabs. 
 	However, this package provides the tools to visualize any earthquake data. This package, while not 
 	fully dependent on USGS datasets, was built with the intention of exporting desired datasets from 	https://earthquake.usgs.gov/earthquakes/search/. 
-Depends: R (>= 3.3.0)
-Imports: ggplot2, 
-	tidyverse, 
-	ggmap
+Depends: R (>= 3.3.0), 
+  ggplot2, 
+  dplyr,
+  ggmap
+Imports: ggplot2,
+  tidyverse,
+  ggmap
 License: CCO
 Encoding: UTF-8
 LazyData: true
