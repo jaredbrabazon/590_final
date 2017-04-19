@@ -2,7 +2,7 @@
 % Please edit documentation in R/polar_transform.R
 \name{polar_transform}
 \alias{polar_transform}
-\title{\code{polar_transform} rotates cartesian coordinates about the origin at a given degree}
+\title{Rotate cartesian coordinates}
 \usage{
 polar_transform(data, rotation = 0, plots = TRUE)
 }

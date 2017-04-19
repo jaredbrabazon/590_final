@@ -2,7 +2,7 @@
 % Please edit documentation in R/geocoord_km.R
 \name{geocoord_km}
 \alias{geocoord_km}
-\title{\code{geocoord_km} converts geocoordinates of latitude and longitude to kilometers. Projections of lat and lon are turned into (x,y) points centered around their mean in kilometers. Code from http://wiki.cbr.washington.edu/qerm/index.php/R/Converting_Geographic_Coordinates_to_Kilometers was used in making the function. See link for more information on calculation.}
+\title{Convert Lat/Lon to Kilometers}
 \usage{
 geocoord_km(data)
 }

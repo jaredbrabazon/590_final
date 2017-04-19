@@ -1,3 +1,5 @@
+#' Rotate cartesian coordinates
+#' 
 #' \code{polar_transform} rotates cartesian coordinates about the origin at a given degree
 #' 
 #' @param data a dataframe containing cartesian coordinates labeled x and y

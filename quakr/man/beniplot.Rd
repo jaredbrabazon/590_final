@@ -2,7 +2,7 @@
 % Please edit documentation in R/beniplot.R
 \name{beniplot}
 \alias{beniplot}
-\title{\code{beniplot} creates a plot of a cross-sectional transect in either kilometers or longitude versus depth in kilometers. The reference of the transect is perpendicular to north. Therefore, if the fault is not perfectly oriented north-south, then it will be obliquely transected. Use \code{adj_beniplot} funtion to account for the strike of the fault. Outputs can be in longitude or kilometers and toggle between showing relative magnitude of events.}
+\title{Plots earthquakes of depth over a cross-section perpendicular to north}
 \usage{
 beniplot(data, units = "lon", magnitude = FALSE)
 }
@@ -20,6 +20,6 @@ A plot of earthquakes is printed with an x-axis of the transect in kilometers an
 \code{beniplot} creates a plot of a cross-sectional transect in either kilometers or longitude versus depth in kilometers. The reference of the transect is perpendicular to north. Therefore, if the fault is not perfectly oriented north-south, then it will be obliquely transected. Use \code{adj_beniplot} funtion to account for the strike of the fault. Outputs can be in longitude or kilometers and toggle between showing relative magnitude of events.
 }
 \examples{
-beniplot(data = dataframe, units = "km", magnitude = TRUE)
+beniplot(data = chile, units = "km", magnitude = TRUE)
 beniplot(data = dataframe, units = "lon", magnitude = TRUE)
 }

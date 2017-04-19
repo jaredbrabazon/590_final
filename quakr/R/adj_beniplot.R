@@ -1,11 +1,13 @@
+#' Plots earthquakes of depth over a cross-section with given strike
+#' 
 #' \code{adj_beniplot} creates a plot of a cross-sectional transect in kilometers versus depth in kilometers. The user defines the strike of the fault allowing a perpendicular transect to the fault. This is useful in defining Wadati-Benioff Zones on subducting slabs
 #' 
-#' @param data a dataframe containing at least latitude and longitude of earthquakes as well as the magnitude and depth of the earthquakes. This function was originally designed to work with .csv data exported from https://earthquake.usgs.gov/earthquakes/search/
+#' @param data a dataframe containing at least latitude and longitude of earthquakes as well as the magnitude and depth of the earthquakes. This function was originally designed to work with .csv data exported from https://earthquake.usgs.gov/earthquakes/search/.
 #' @param strike The strike of the fault of interest (in degrees from north)
 #' @param magnitude if \code{magnitude = TRUE} a plot showing a transect in km of points rotated to the degree set in \code{strike} on the x-axis. The y-axis includes the earthquake depths categorized in color and size relating depth and magnitude of events. If \code{magnitude = FALSE}, a plot of the transect in km and depth in km is printed showing an increase in depth with a gradation of color.
 #' @return A plot of earthquakes is printed with an x-axis of the transect in kilometers and the y-axis is depth of earthquake in km. A gradation of color illustrates the increase in depth. If the default \code{magnitude = FALSE} is changed to \code{magnitude = TRUE}, then magnitude of events are shown in correlation with depth.
 #' @examples 
-#' adj_beniplot(data = dataframe, strike = 13, magnitude = TRUE)
+#' adj_beniplot(data = chile, strike = 13, magnitude = TRUE)
 #' @export
 
 #create adj_beniplot() function to plot strike adjusted data

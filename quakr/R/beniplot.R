@@ -1,3 +1,5 @@
+#' Plots earthquakes of depth over a cross-section perpendicular to north
+#' 
 #' \code{beniplot} creates a plot of a cross-sectional transect in either kilometers or longitude versus depth in kilometers. The reference of the transect is perpendicular to north. Therefore, if the fault is not perfectly oriented north-south, then it will be obliquely transected. Use \code{adj_beniplot} funtion to account for the strike of the fault. Outputs can be in longitude or kilometers and toggle between showing relative magnitude of events.
 #' 
 #' @param data a dataframe containing at least latitude and longitude of earthquakes as well as the magnitude and depth of the earthquakes. This function was originally designed to work with .csv data exported from https://earthquake.usgs.gov/earthquakes/search/
@@ -5,7 +7,7 @@
 #' @param magnitude if \code{magnitude = TRUE} a plot showing a transect in km on the x-axis with the y-axis including the earthquake depths categorized in color and size relating depth and magnitude of events is printed. If \code{magnitude = FALSE}, a plot of the transect in km and depth in km is printed showing an increase in depth with a gradation of color.
 #' @return A plot of earthquakes is printed with an x-axis of the transect in kilometers and the y-axis is depth of earthquake in km. A gradation of color illustrates the increase in depth. If the default \code{magnitude = FALSE} is changed to \code{magnitude = TRUE}, then magnitude of events are shown in correlation with depth.
 #' @examples 
-#' beniplot(data = dataframe, units = "km", magnitude = TRUE)
+#' beniplot(data = chile, units = "km", magnitude = TRUE)
 #' beniplot(data = dataframe, units = "lon", magnitude = TRUE)
 #' @export
 
