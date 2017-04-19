@@ -1,0 +1,121 @@
+---
+title: "quakr"
+author: "Jared Brabazon"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{quakr}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(fig.width=6, fig.height=4, fig.path='Figs/',
+                      warning=FALSE, message=FALSE)
+```
+
+```{r include = FALSE}
+library(devtools)
+load_all("../../quakr")
+```
+
+#Introduction
+This package contains five functions that allow the visualization of earthquake data. The main purpose is to easily define Wadati-Benioff Zones for subducting slabs. However, this package provides the tools to visualize any earthquake data. This package, while not fully dependent on USGS datasets, was built with the intention of exporting desired datasets from https://earthquake.usgs.gov/earthquakes/search/. 
+
+#Plan view mapping
+In geology, it is widely accepted that most earthquakes occur on plate boundaries. Therefore, it can be very informative to map in plan view the spatial distribution of earthquakes. Thus, these zones of seismicity can be defined. The mapull function can help to map these earthquakes on top of a google map. For example, if I wanted to see the spatial distribution of earthquakes along the subduction zone in Chile, I could go to the USGS database ([via](https://earthquake.usgs.gov/earthquakes/search/)) and export earthquake data as a csv for the years and magnitude specified. Importing USGS data, I get something that looks like the table below (Note that I have used a dataset chile that is part of the quakr package):
+```{r echo=FALSE}
+data <- chile
+print(head(data[1:5], 10))
+```
+
+Using the mapull function, I can map these data points on a google map by depth or by magnitude (both shown below). Note that the bounds of the map are automatically calculated based on the longitude and latitude of the data points.
+
+```{r}
+mapull(data, magnitude = FALSE)
+```
+
+```{r}
+mapull(data, magnitude = TRUE)
+```
+
+By looking at the maps, it appears that the trend of the earthquakes from the USGS database trend around 15 degrees from North (top of map). This can be inferred to be the subduction zone. The depth plot helps to see that earthquakes seem to be getting relatively deeper as we move inland. This is likely due to events occuring with the subducting slab at depth. The magnitude map helps to see where larger earthquakes tend to occur.
+
+
+#Visualizing earthquakes with depth
+Now that a map with plan view is shown, it can be important to visualize the data with their respective depths. This is important specifically in defining seismic zones such as the Wadati-Benioff zone. The best method to visualizing these earthquakes is by using the beniplot and adj_beniplot functions. The beniplot function allows for the visualization of data along a cross-section perpendicular to north. This may be beneficial in some cases, however, it is important to note that faults striking any degree from north will be displayed obliquely. The beniplot function allows for four options in visualizing the data. The data can be in units of kilometers or longitude. Also, the data can be toggled to view the correlation of magnitude with depth.
+
+If, for example, we wanted to define the Wadati-Benioff zone for the subducting slab along Chile as mapped above. Using beniplot, the zone can be somewhat clearly defined.
+
+```{r}
+beniplot(data, units = "lon", magnitude = FALSE)
+```
+
+
+We see what appears to look like the subducting slab over the longitude specified. There appears to be a relatively linear zone of seismicity which helps to define the Wadati-Benioff zone. Now that the zone is relatively well defined, we may want to see if there is clustering of events of larger magnitude. Using beniplot we yield the following.
+
+```{r}
+beniplot(data, units = "lon", magnitude = TRUE)
+```
+
+Say that we now would like to convert from longitude to kilometers along the cross-section. Using beniplot we yield the following.
+
+```{r}
+beniplot(data, units = "km", magnitude = FALSE)
+```
+
+```{r}
+beniplot(data, units = "km", magnitude = TRUE)
+```
+
+
+It is important to note that data using this beniplot function may be seen obliquely as the cross-section is perpendicular to north. To account for the strike of the fault of interest, one can use the adj_beniplot function. For example, I know that the strike of the subduction zone along the coast of Chile is striking nearly 13 degrees from north. To account for this strike, I use the adj_beniplot as follows.
+
+```{r}
+adj_beniplot(data, strike = 13, magnitude = FALSE)
+```
+
+Now I have a much clearer plot that truly defines the Wadati-Benioff zone of the slab perpendicular to the strike. If I now wanted to view the correlation of magnitude and depth along the cross-section perpendicular to strike, I could use the following.
+
+```{r}
+adj_beniplot(data, strike = 13, magnitude = TRUE)
+```
+
+In conclusion, it is important to understand what cross-section area I would like to plot. Knowing what beniplot and adj_beniplot do help to get a crisp image of cross-section desired.
+
+#Unit analysis and data rotation
+Unit analysis is an important component of defining the Wadati-Benioff zone. Sometimes, we like to have our spatial data in geocoordinates of latitude and longitude. However, at times we may want to convert such points to an (x,y) projection in kilometers. For example, to acount for a fault's strike from north, we need to rotate the data points. In order to rotate the data points, they need to have an origin about which to rotate. The geocoord_km function projects the latitude and longitude in terms of kilometers about an origin. If we used the Chile earthquake set as shown above, we could convert the values and receive a dataframe with the lat,lon and the new x,y values.
+
+```{r}
+new_values <- geocoord_km(data)
+head(new_values)
+```
+
+With the new values, we can now perform a matrix rotation on the data to change its orientation. Using matrix algebra, we can solve for the new x,y values for a given degree of rotation. 
+
+$$
+\left [\begin{array}{cc} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{array} \right] \left[\begin{array}{c} x\\y \end{array}\right] = \left[\begin{array}{c} new x\\new y \end{array}\right]
+$$
+
+The newx and newy values are defined as the following equations:
+
+$x\cos\theta - y\cos\theta = newx$
+
+$x\sin\theta + y\cos\theta = newy$
+
+Using these equations, any cartesian data can be rotated by $\theta$. If we were looking at our plan view map of Chile with earthquake spatial data, we would want to account for the strike. Since the maps generated from google have north on the top of the map, we cannot rotate the map. Therefore, we need to rotate the earthquake data to allow the strike of the fault to be perpendicular to north. Again, as I know the fault in Chile is striking 13 degrees from north, I can use the following:
+
+```{r}
+rot_values <- polar_transform(new_values, rotation = 13, plots = FALSE)
+head(rot_values)
+```
+
+```{r}
+polar_transform(new_values, rotation = 13, plots = TRUE)
+```
+
+The result is the original x,y points in km generated by the geocoord_km function shown in black and the new rotated points shown in green. A dataframe can also be made of the new values. This works for any dataframe with cartesian points labled as x and y. 
+
+#Conclusion
+The quakr package allows the visualization of earthquake data as well as offers tools for data transformation. This package was designed to determine Wadati-Benioff zones along subducting slabs. However, it may provide useful in analyzing any earthquake datasets.
+
+####It is to be noted that a dataset "chile" has been added to use for examples.
