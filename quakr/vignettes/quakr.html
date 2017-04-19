@@ -138,7 +138,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 \left [\begin{array}{cc} \cos\theta &amp; -\sin\theta \\ \sin\theta &amp; \cos\theta \end{array} \right] \left[\begin{array}{c} x\\y \end{array}\right] = \left[\begin{array}{c} new x\\new y \end{array}\right]
 \]</span></p>
 <p>The newx and newy values are defined as the following equations:</p>
-<p><span class="math inline">\(x\cos\theta - y\cos\theta = newx\)</span></p>
+<p><span class="math inline">\(x\cos\theta - y\sin\theta = newx\)</span></p>
 <p><span class="math inline">\(x\sin\theta + y\cos\theta = newy\)</span></p>
 <p>Using these equations, any cartesian data can be rotated by <span class="math inline">\(\theta\)</span>. If we were looking at our plan view map of Chile with earthquake spatial data, we would want to account for the strike. The maps generated from google denote the top of the map as north. Unfortunately we cannot rotate the map. Therefore, we need to rotate the earthquake data to allow the strike of the fault to be perpendicular to north. Again, as I know the fault in Chile is striking 13 degrees from north, I can use the following:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">rot_values &lt;-<span class="st"> </span><span class="kw">polar_transform</span>(new_values, <span class="dt">rotation =</span> <span class="dv">13</span>, <span class="dt">plots =</span> <span class="ot">FALSE</span>)

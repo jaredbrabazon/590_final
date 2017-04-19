@@ -98,7 +98,7 @@ $$
 
 The newx and newy values are defined as the following equations:
 
-$x\cos\theta - y\cos\theta = newx$
+$x\cos\theta - y\sin\theta = newx$
 
 $x\sin\theta + y\cos\theta = newy$
 
