@@ -2,7 +2,7 @@
 % Please edit documentation in R/mapull.R
 \name{mapull}
 \alias{mapull}
-\title{Creat a map displaying earthquake data}
+\title{Create a map displaying earthquake data}
 \usage{
 mapull(data, magnitude = FALSE)
 }
