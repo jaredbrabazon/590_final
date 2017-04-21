@@ -1,4 +1,4 @@
-#' Creat a map displaying earthquake data
+#' Create a map displaying earthquake data
 #' 
 #' \code{mapull} looks through the dataframe inputted and pulls a map from google depending on the latitude and longitude in the dataframe. Earthquake depths and magnitudes are plotted in plan view on the map. This function uses the ggmap package.
 #' 
